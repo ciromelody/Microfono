@@ -21,6 +21,8 @@ import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import edu.ciromelody.microfono.AudioRecordActivity;
@@ -106,7 +108,9 @@ public class RecordWaveTask extends AsyncTask<File, Void, Object[]> {
                 Log.e("RECORD","WARNING! Directory does not exists !!!! Creation problems");
             }
         }
-        String filename = "recording_" + System.currentTimeMillis() / 1000 + ".wav";
+        String currentDateString = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        String currentTimeString = new SimpleDateFormat("HH:mm").format(new Date());
+        String filename = "recording_" +  currentDateString + ".wav";
         File newFile = new File(directory, filename);
         if(!newFile.exists()){
             try {
